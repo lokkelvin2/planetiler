@@ -105,6 +105,7 @@ public class Generate {
   }
 
   private static <T> T loadAndParseYaml(String url, PlanetilerConfig config, Class<T> clazz) throws IOException {
+    url = url.replaceAll("\\\\", "/");
     LOGGER.info("reading " + url);
     try (var stream = Downloader.openStream(url, config)) {
       // Jackson yaml parsing does not handle anchors and references, so first parse the input
